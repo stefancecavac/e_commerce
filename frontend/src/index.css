@@ -1,0 +1,87 @@
+header {
+    background-color: rgb(42, 41, 41);
+    border-radius: 10px;
+    margin: 0.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+}
+
+header input {
+    width: 50%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.home {
+    background-color: rgb(232, 230, 230);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill);
+}
+
+.home a {
+    margin: 20px;
+    text-decoration: none;
+}
+
+.home hr {
+    width: 100%;
+   margin:0 20px;
+}
+
+.homecontent {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 3fr));
+}
+
+
+.category {
+    background-color: rgb(232, 230, 230);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.category p:nth-child(1) {
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+  
+    background-color: red;
+}
+
+.category p:nth-child(2) {
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: blue;
+}
+
+.category p:nth-child(3) {
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: green;
+}
+
+.category p:nth-child(4) {
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: yellow;
+}
+
+
+.productcard {
+    border-radius: 5px;
+    background-color: rgb(232, 230, 230);
+    border: 1px solid grey;
+    box-shadow: 1px  1px 3px;
+    padding: 10px;
+    color:black;
+}
+

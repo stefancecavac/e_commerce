@@ -7,12 +7,14 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const productRouter = require('./routes/productRoutes')
-
+const userRouter = require('./routes/userRoute')
 
 app.use(cors())
 app.use(express.json())
 
 app.use('/api/products', productRouter)
+app.use('/api/user', userRouter)
+
 
 
 
