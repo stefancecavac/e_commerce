@@ -10,10 +10,6 @@ const productSchema = new Schema({
         type:String,
         required:true
     },
-    date:{
-        type:Date,
-        required:true
-    },
     price:{
         type:Number,
         required:true

@@ -1,9 +1,9 @@
 const Product = require('../models/productMode')
-
+const mongoose = require('mongoose')
 
 const getProducts = async(req , res) => {
     try{ 
-        const product = await Product.find({}).sort({createdAt: '-1'})
+        const product = await Product.find({}).sort({createdAt: -1})
         res.status(200).json(product)
     }
     catch(error){
@@ -11,15 +11,35 @@ const getProducts = async(req , res) => {
     }
 }
 
-const postProduct = async(req , res) => {
-    const {title, description, date, price} = req.body
-
-    if(!title || !description || !date || !price){
-        res.status(400).json({message: 'please fill out all fields'})
+const getSingleProduct = async(req , res) => {
+    const {id} = req.params
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({message: 'not a valid ID'})
     }
 
     try{
-        const product = await Product.create({title, description, date, price})
+        const product = await Product.findById({_id :id})
+        if(!product){
+            return res.status(400).json({message: 'no such product'})
+        }
+        res.status(200).json(product)
+    }
+    catch(error){
+        res.status(500).json({error: error.message})
+
+    }
+
+}
+
+const postProduct = async(req , res) => {
+    const {title, description,  price} = req.body
+
+    if(!title || !description ||  !price){
+       return res.status(400).json({message: 'please fill out all fields'})
+    }
+
+    try{
+        const product = await Product.create({title, description,  price})
         res.status(201).json(product)
     }
     catch(error){
@@ -27,4 +47,4 @@ const postProduct = async(req , res) => {
     }
 }
 
-module.exports = {getProducts , postProduct}
+module.exports = {getProducts , postProduct ,getSingleProduct}
