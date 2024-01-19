@@ -8,6 +8,7 @@ const Category = () => {
             <p>books</p>
             <p>gaming</p>
             <p>furniture</p>
+            <input type="text"></input>
 
         </div>
     )

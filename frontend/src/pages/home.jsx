@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Link } from 'react-router-dom'
 
 import { useProductContext } from "../hooks/useProductHook"
+import{useUserContext} from '../hooks/useUserContext'
 
 import ProductCard from "../components/productCard"
 
@@ -9,10 +10,15 @@ import Category from "../components/category"
 
 const Home = () => {
     const { products, dispatch } = useProductContext()
+    const {user} = useUserContext()
+
+    
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await fetch("http://localhost:4000/api/products")
+            const response = await fetch("http://localhost:4000/api/products" , {
+               
+            })
             const json = await response.json()
 
             if (response.ok) {
@@ -21,7 +27,10 @@ const Home = () => {
         }
 
         fetchProducts()
-    }, [dispatch])
+    }, [dispatch , user])
+
+
+   
 
     return (
         <div className="home">
