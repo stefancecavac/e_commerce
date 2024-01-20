@@ -6,7 +6,7 @@ import{useUserContext} from '../hooks/useUserContext'
 
 import ProductCard from "../components/productCard"
 
-import Category from "../components/category"
+
 
 const Home = () => {
     const { products, dispatch } = useProductContext()
@@ -29,17 +29,8 @@ const Home = () => {
         fetchProducts()
     }, [dispatch , user])
 
-
-   
-
     return (
         <div className="home">
-
-            <div className="homecategory">
-                <Category></Category>
-            </div>
-            <hr></hr>
-
             <div className="homecontent">
 
                 {products && products.map((product) => (

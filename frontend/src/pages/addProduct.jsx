@@ -44,12 +44,12 @@ const AddProduct = () => {
                 value={title}></input>
 
             <label>description:</label>
-            <input type="password"
+            <input 
                 onChange={e => setDescription(e.target.value)}
                 value={description}></input>
 
             <label>price:</label>
-            <input type="password"
+            <input type="number"
                 onChange={e => setPrice(e.target.value)}
                 value={price}></input>
 

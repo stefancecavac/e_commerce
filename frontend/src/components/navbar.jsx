@@ -11,15 +11,17 @@ const Navbar = () => {
 
     return (
         <header>
-            <Link to='/'><h1>E-commercre website</h1></Link>
+            <div className="headermain">
+                <Link to='/'><h1>E-commerce</h1></Link>
 
-
-            {!user && (
-              <LoginRegister></LoginRegister>
-            )}
-
-            <UserInfo></UserInfo>
-
+                <input className='search' type="text"></input>
+                {!user && (
+                    <LoginRegister></LoginRegister>
+                )}
+                <UserInfo></UserInfo>
+            </div>
+           
+            
 
 
         </header>
