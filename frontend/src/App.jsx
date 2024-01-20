@@ -8,6 +8,7 @@ import Register from './pages/register'
 import Navbar from './components/navbar'
 import { useUserContext } from './hooks/useUserContext'
 import AddProduct from './pages/addProduct'
+import MyProducts from './pages/myProducts'
 
 function App() {
   const { user } = useUserContext()
@@ -26,7 +27,9 @@ function App() {
           <Route path='/user/register'
             element={!user ? <Register></Register> : <Navigate to='/'></Navigate>}></Route>
 
-          <Route path='/addproduct' element={<AddProduct></AddProduct>}></Route>
+          <Route path='/addproduct' element={user ? <AddProduct></AddProduct> : <Navigate to='/'></Navigate>}></Route>
+
+          <Route path='/userproducts' element={user ? <MyProducts></MyProducts> : <Navigate to='/'></Navigate>}></Route>
 
         </Routes>
       </BrowserRouter>

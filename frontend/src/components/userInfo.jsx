@@ -18,6 +18,9 @@ const UserInfo = () => {
         <div className="userinfo">
 
             <Link to='/addproduct'> <button >add product</button></Link>
+            <Link to='/userproducts'> <button >my products</button></Link>
+
+
     
             <p>{user.email}</p>
             <button onClick={handleLogout}>logout</button>

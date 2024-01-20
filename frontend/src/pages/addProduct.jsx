@@ -13,24 +13,28 @@ const AddProduct = () => {
 
     const postProduct = async(e) => {
         e.preventDefault()
-
-        const response = await fetch('http://localhost:4000/api/products' ,{
-            method:'POST',
-            body: JSON.stringify({ title, description, price}),
-            headers: {
-              'Authorization': `Bearer ${user.token}`,
-              'Content-Type': 'application/json'
+        try{
+            const response = await fetch('http://localhost:4000/api/products' ,{
+                method:'POST',
+                body: JSON.stringify({ title, description, price}),
+                headers: {
+                  'Authorization': `Bearer ${user.token}`,
+                  'Content-Type': 'application/json'
+                }
+            })
+            const json = await response.json()
+            if(response.ok){
+                dispatch({type: 'POST_PRODUCTS' ,payload:json})
+                setTitle('')
+                setDescription('')
+                setPrice('')
             }
-        })
-
-        const json = await response.json()
-
-        if(response.ok){
-            dispatch({type: 'POST_PRODUCTS' ,payload:json})
-            setTitle('')
-            setDescription('')
-            setPrice('')
         }
+        catch(error){
+            console.log(error)
+        }
+        
+       
     }
 
     return (

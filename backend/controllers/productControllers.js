@@ -31,15 +31,28 @@ const getSingleProduct = async(req , res) => {
 
 }
 
+const getUserProduct = async(req , res) => {
+
+    try{
+        const userid = req.user._id
+        const product = await Product.find({userid})
+        res.status(200).json(product)
+    }
+    catch(error){
+        res.status(500).json({error: message.error})
+    }
+}
+
 const postProduct = async(req , res) => {
-    const {title, description,  price} = req.body
+    const {title, description,  price } = req.body
 
     if(!title || !description ||  !price){
        return res.status(400).json({message: 'please fill out all fields'})
     }
 
     try{
-        const product = await Product.create({title, description,  price})
+        const userid = req.user._id
+        const product = await Product.create({title, description,  price , userid})
         res.status(201).json(product)
     }
     catch(error){
@@ -47,4 +60,4 @@ const postProduct = async(req , res) => {
     }
 }
 
-module.exports = {getProducts , postProduct ,getSingleProduct}
+module.exports = {getProducts , postProduct ,getSingleProduct ,getUserProduct}

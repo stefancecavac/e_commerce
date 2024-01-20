@@ -8,7 +8,7 @@ export const UseRegister =  () => {
     const { dispatch } = useUserContext()
 
     const register = async (email, password) => {
-        const response = await fetch('http://localhost:4000/api/user/login', {
+        const response = await fetch('http://localhost:4000/api/user/register', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
             headers: {

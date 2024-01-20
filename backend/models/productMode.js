@@ -13,6 +13,10 @@ const productSchema = new Schema({
     price:{
         type:Number,
         required:true
+    },
+    userid:{
+        type:String,
+        required:true
     }
 } , {timestamps:true})
 
