@@ -1,32 +1,43 @@
-import { useUserContext } from "../hooks/useUserContext"
-import {Link} from 'react-router-dom'
-
+import { useState } from 'react';
+import { useUserContext } from "../hooks/useUserContext";
+import { Link } from 'react-router-dom';
 import { UseLogout } from "../hooks/useLogout";
 
 const UserInfo = () => {
-    const { user } = useUserContext()
-   
-    const {logout} = UseLogout()
+    const { user } = useUserContext();
+    const { logout } = UseLogout();
+
+    const [isMenuVisible, setMenuVisible] = useState(false);
 
     const handleLogout = async () => {
         await logout();
-
     }
+
+    const toggleMenu = () => {
+        setMenuVisible(!isMenuVisible);
+    }
+
     return (
         user && (
+            <div className="userinfo">
 
-        <div className="userinfo">
-
-            <Link to='/addproduct'> <button >add product</button></Link>
-            <Link to='/userproducts'> <button >my products</button></Link>
-
-
-    
-            <p>{user.email}</p>
-            <button onClick={handleLogout}>logout</button>
-        </div>
+                {isMenuVisible && (
+                    <div className="menu">
+                        <div className='menuuser'>
+                            <p>{user.email}</p>
+                            <button onClick={toggleMenu}>X</button>
+                            </div>
+                            <Link to='/addproduct'><button>Add Product</button></Link>
+                            <Link to='/userproducts'><button>My Products</button></Link>
+                            <button onClick={handleLogout}>Logout</button>
+                      
+                    </div>
+                )}
+                <p>{user.email}</p>
+                <button onClick={toggleMenu}>Menu</button>
+            </div>
         )
-    )
+    );
 }
 
-export default UserInfo
+export default UserInfo;
