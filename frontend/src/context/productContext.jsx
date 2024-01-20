@@ -29,7 +29,7 @@ export const ProductContextProvider = ({children}) => {
     const [state , dispatch] = useReducer(ProductReducer ,{
         products:[]
     })
-    console.log(state)
+
     return(
         <ProductContext.Provider value={{...state , dispatch}}> 
             {children}

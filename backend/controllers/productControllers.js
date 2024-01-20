@@ -47,7 +47,7 @@ const postProduct = async(req , res) => {
     const {title, description,  price } = req.body
 
     if(!title || !description ||  !price){
-       return res.status(400).json({message: 'please fill out all fields'})
+       return res.status(400).json({error: 'please fill out all fields'})
     }
 
     try{
