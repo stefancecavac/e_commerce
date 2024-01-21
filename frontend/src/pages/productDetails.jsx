@@ -56,14 +56,14 @@ const ProductDetails = () => {
                 <p>{singleProduct.description}</p>
                 <p>{singleProduct.price}</p>
                 <p>{singleProduct.createdAt}</p>
-                <p>{singleProduct.userid}</p>
-                <p>{singleProduct.email}</p>
+             
+                <p>{singleProduct.userid.email}</p>
 
     
 
 
 
-                {user._id === singleProduct.userid && (
+                {user._id === singleProduct.userid._id && (
                     <button onClick={handleDelete}>Delete</button>
                 )}
             </>

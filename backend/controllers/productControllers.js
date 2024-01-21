@@ -21,7 +21,7 @@ const getSingleProduct = async (req, res) => {
     }
 
     try {
-        const product = await Product.findById({ _id: id })
+        const product = await Product.findById({ _id: id }).populate('userid' ,'email')
         if (!product) {
             return res.status(400).json({ message: 'no such product' })
         }
