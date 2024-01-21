@@ -1,28 +1,28 @@
 import { useEffect } from "react"
 import { useProductContext } from "../hooks/useProductHook"
-import {useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useUserContext } from "../hooks/useUserContext"
 import { useNavigate } from "react-router-dom"
 
 const ProductDetails = () => {
-    const {singleProduct,dispatch} = useProductContext()
-    const {productId} = useParams()
-    const{user} = useUserContext()
+    const { singleProduct, dispatch } = useProductContext()
+    const { productId } = useParams()
+    const { user } = useUserContext()
     const navigateTo = useNavigate()
-    
-    useEffect(()=> { 
-        const fetchSingleProduct = async() => {
-            
-            const response = await fetch(`http://localhost:4000/api/products/${productId}`,{
+
+    useEffect(() => {
+        const fetchSingleProduct = async () => {
+
+            const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
             })
             const json = await response.json()
 
-            if(response.ok){
-                dispatch({type:'SET_SINGLE_PRODUCT' , payload:json})
+            if (response.ok) {
+                dispatch({ type: 'SET_SINGLE_PRODUCT', payload: json })
             }
         }
         fetchSingleProduct()
-    } , [dispatch , productId])
+    }, [dispatch, productId])
     console.log(singleProduct)
 
 
@@ -48,26 +48,21 @@ const ProductDetails = () => {
         }
     }
 
-    return(
+    return (
         <div className="productdetail">
             {singleProduct && (
-            <>
-                <h1>{singleProduct.title}</h1>
-                <p>{singleProduct.description}</p>
-                <p>{singleProduct.price}</p>
-                <p>{singleProduct.createdAt}</p>
-             
-                <p>{singleProduct.userid.email}</p>
+                <>
+                    <h1>{singleProduct.title}</h1>
+                    <p>{singleProduct.description}</p>
+                    <p>{singleProduct.price}</p>
+                    <p>{singleProduct.createdAt}</p>
+                    <p>{singleProduct.userid.email}</p>
 
-    
-
-
-
-                {user._id === singleProduct.userid._id && (
-                    <button onClick={handleDelete}>Delete</button>
-                )}
-            </>
-        )}
+                    {user && user._id === singleProduct.userid._id && (
+                        <button onClick={handleDelete}>Delete</button>
+                    )}
+                </>
+            )}
 
         </div>
     )
