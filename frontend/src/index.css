@@ -4,21 +4,22 @@ body {
     font-size: 15px;
 }
 
-header{
+header {
     background-color: rgb(42, 41, 41);
 }
 
 .headermain {
     border-radius: 10px;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
     padding: 10px;
 }
-.headermain input{
+
+.headermain input {
     width: 60%;
-    padding:5px;
+    padding: 5px;
     border-radius: 10px;
 }
 
@@ -38,7 +39,7 @@ header{
 
 .home hr {
     width: 100%;
-   margin:0 20px;
+    margin: 0 20px;
 }
 
 .homecontent {
@@ -52,9 +53,9 @@ header{
     border-radius: 5px;
     background-color: rgb(232, 230, 230);
     border: 1px solid grey;
-    box-shadow: 1px  1px 3px;
+    box-shadow: 1px 1px 3px;
     padding: 10px;
-    color:black;
+    color: black;
 }
 
 
@@ -82,7 +83,7 @@ header{
 
 .login label {
     display: block;
-    color:white;
+    color: white;
     margin-bottom: 10px;
 }
 
@@ -109,7 +110,7 @@ header{
 
 
 .login button:hover {
-    background-color:rgb(42, 41, 41);
+    background-color: rgb(42, 41, 41);
     color: white;
     border: 2px solid white;
 }
@@ -152,7 +153,7 @@ header{
 .register label {
     display: block;
     margin-bottom: 10px;
-    color:white;
+    color: white;
 }
 
 .register input {
@@ -204,39 +205,37 @@ header{
     cursor: pointer;
 }
 
-.logout:hover {
-    background-color: rgb(46, 46, 157);
-    color: white;
-}
-
 .addproduct {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
-    
+
 }
-.addproduct h2{
-    color: white;
+
+.addproduct h2 {
+    color: rgb(42, 41, 41);
 }
 
 .addproduct form {
-    background-color: rgb(42, 41, 41);
+    margin-top: 20%;
+    background-color: rgb(230, 230, 230);
     padding: 20px;
     border-radius: 10px;
-    border: 4px solid white;
-    max-width: 400px;
+    border: 4px solid rgb(42, 41, 41);
+    max-width: 600px;
     width: 100%;
+    height: 90vh;
 }
 
 .addproduct label {
     display: block;
     margin-bottom: 10px;
-    color:white;
+    color: rgb(42, 41, 41);
 }
 
 .addproduct input {
-    width: 100%;
+    width: 20%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -247,8 +246,8 @@ header{
 .addproduct button {
     width: 100%;
     padding: 10px;
-    background-color: white;
-    color: black;
+    background-color: rgb(42, 41, 41);
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -258,8 +257,9 @@ header{
 
 
 .addproduct button:hover {
-    background-color: rgb(42, 41, 41);
-    color: white;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
 }
 
 .error {
@@ -271,77 +271,88 @@ header{
     padding: 10px;
 }
 
-.authlinks{
+.authlinks {
     display: flex;
     justify-content: space-between;
-    width:10%;
-    
+    width: 10%;
+
 }
-.authlinks a{
-    color:white;
+
+.authlinks a {
+    color: white;
     border: 2px solid white;
-   
+
     border-radius: 10px;
     text-decoration: none;
-    padding:10px;
-    margin:5px;
+    padding: 10px;
+    margin: 5px;
 }
-.authlinks a:hover{
-    color:black;
+
+.authlinks a:hover {
+    color: black;
     background-color: white;
     border: 2px solid rgb(0, 0, 0);
 }
 
-.userinfo{
+.userinfo {
     display: flex;
     align-items: center;
     justify-content: right;
-    width:20%;
+    width: 20%;
     border-radius: 10px;
-    padding:10px;
-    
+    padding: 10px;
+
 }
 
-.userinfo button{
+.userinfo button {
     border: none;
-    padding:10px;
-   
+    padding: 10px;
+
     border-radius: 10px;
-    border:2px solid white;
+    border: 2px solid white;
     background-color: rgb(42, 41, 41);
     color: white;
 }
 
-.userinfo button:hover{
-    border:2px solid rgb(42, 41, 41);
+.userinfo button:hover {
+    border: 2px solid rgb(42, 41, 41);
     background-color: white;
-    cursor:pointer;
-    color:black;
+    cursor: pointer;
+    color: black;
 }
 
 .userinfo .menu {
     position: absolute;
-    top:0; /* Position the menu below the button */
-    right: 0; /* Align the menu to the right */
+    top: 0;
+    right: 0;
     background-color: rgb(42, 41, 41);
     border-radius: 10px;
     padding: 10px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 200px; /* Adjust the width as needed */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1; /* Ensure the menu appears above other elements */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    width: 200px;
+    z-index: 1;
 }
-.userinfo .menu .menuuser{
+
+.userinfo .menu .menuuser {
     display: flex;
+    justify-content: space-between;
 }
 
 .userinfo .menu a {
     color: white;
     text-decoration: none;
-    padding: 8px;
-    margin: 5px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.productdetail{
+    background-color:rgb(230, 230, 230) ;
+    border-radius: 10px;
+    margin:10px;
+    padding:10px;
 }

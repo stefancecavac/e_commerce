@@ -6,6 +6,11 @@ const AddProduct = () => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
+    const [dateAdded, setDateAdded] = useState('')
+    const [category, setCategory] = useState('')
+    
+
+    const { products } = useProductContext()
     const [loading, setLoading] = useState(null)
     const [error, setError] = useState(null)
 
@@ -17,9 +22,10 @@ const AddProduct = () => {
         e.preventDefault()
         setLoading(false)
         try {
+           
             const response = await fetch('http://localhost:4000/api/products', {
                 method: 'POST',
-                body: JSON.stringify({ title, description, price }),
+                body: JSON.stringify({ title, description, price, dateAdded, category}),
                 headers: {
                     'Authorization': `Bearer ${user.token}`,
                     'Content-Type': 'application/json'
@@ -31,6 +37,8 @@ const AddProduct = () => {
                 setTitle('');
                 setDescription('');
                 setPrice('');
+                setDateAdded('')
+                setCategory('')
                 setError(null);
                 setLoading(true)
             } else {
@@ -40,12 +48,12 @@ const AddProduct = () => {
         }
         catch (error) {
             console.log(error)
-            
+
         }
 
 
     }
-
+    console.log(products)
     return (
         <div className='addproduct'>
 
@@ -66,6 +74,18 @@ const AddProduct = () => {
                     onChange={e => setPrice(e.target.value)}
                     value={price}></input>
 
+                <label>Category:</label>
+                <select
+                    value={category}
+                    onChange={e => setCategory(e.target.value)}
+                >
+                    <option value="">Select category</option>
+                    {['electronic', 'furniture', 'automotive', 'other'].map((category) => (
+                        <option key={category} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
 
                 <button disabled={loading} type="submit">add</button>
                 {error && <div className='error'>{error}</div>}
