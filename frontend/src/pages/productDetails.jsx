@@ -48,10 +48,6 @@ const ProductDetails = () => {
         }
     }
 
-
-
-
-
     return(
         <div className="productdetail">
             {singleProduct && (
@@ -60,7 +56,16 @@ const ProductDetails = () => {
                 <p>{singleProduct.description}</p>
                 <p>{singleProduct.price}</p>
                 <p>{singleProduct.createdAt}</p>
-                <button onClick={handleDelete}>delete</button>
+                <p>{singleProduct.userid}</p>
+                <p>{singleProduct.email}</p>
+
+    
+
+
+
+                {user._id === singleProduct.userid && (
+                    <button onClick={handleDelete}>Delete</button>
+                )}
             </>
         )}
 

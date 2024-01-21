@@ -55,8 +55,9 @@ const postProduct = async (req, res) => {
 
     try {
         const userid = req.user._id
-        const product = await Product.create({ title, description, price, userid , category })
+        const product = await Product.create({ title, description, price, userid, category })
         res.status(201).json(product)
+        console.log(product)
     }
     catch (error) {
         res.status(500).json({ error: error.message })

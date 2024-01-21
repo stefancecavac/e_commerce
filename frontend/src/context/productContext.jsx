@@ -22,7 +22,7 @@ export const ProductReducer = (state, action) => {
             case 'DELETE_PRODUCT':
                 return {
                     products: state.products.filter((w) => w._id !== action.payload._id)
-                };
+                }
         default:
             return state
     }

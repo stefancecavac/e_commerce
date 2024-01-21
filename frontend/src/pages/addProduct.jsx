@@ -10,7 +10,6 @@ const AddProduct = () => {
     const [category, setCategory] = useState('')
     
 
-    const { products } = useProductContext()
     const [loading, setLoading] = useState(null)
     const [error, setError] = useState(null)
 
@@ -50,10 +49,8 @@ const AddProduct = () => {
             console.log(error)
 
         }
-
-
     }
-    console.log(products)
+ 
     return (
         <div className='addproduct'>
 
