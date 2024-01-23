@@ -19,6 +19,9 @@ const productSchema = new Schema({
         ref: 'User', 
         required: true
     },
+    image:{
+        type:String
+    },
    
     category: {
         type:String,
