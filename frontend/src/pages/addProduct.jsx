@@ -7,7 +7,7 @@ const AddProduct = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
-    const [image, setImage] = useState(null);
+    const [images, setImages] = useState([]);
 
     const [loading, setLoading] = useState(null);
     const [error, setError] = useState(null);
@@ -22,7 +22,7 @@ const AddProduct = () => {
         try {
             const response = await fetch('http://localhost:4000/api/products', {
                 method: 'POST',
-                body: JSON.stringify({ title, description, price, category, image }),
+                body: JSON.stringify({ title, description, price, category, images }),
                 headers: {
                     'Authorization': `Bearer ${user.token}`,
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const AddProduct = () => {
                 setDescription('');
                 setPrice('');
                 setCategory('');
-                setImage(null); // Clear the image state after successful upload
+                setImages(null); 
                 setError(null);
                 setLoading(true);
             } else {
@@ -63,12 +63,22 @@ const AddProduct = () => {
     };
 
     const handleFileUpload = async (e) => {
-        const file = e.target.files[0];
+        const files = e.target.files;
 
-        if (file) {
-            const base64 = await convertTo64(file);
-            console.log(base64)
-            setImage(base64);
+        if(files.length > 5){
+            console.log('max number of images 5')
+            setImages([]);
+            setError('max number of images is 5')
+            return
+        }
+
+        if (files.length > 0) {
+            const base64Array = await Promise.all(
+                Array.from(files).map((file) => convertTo64(file))
+            );
+            setError(null)
+            console.log(base64Array);
+            setImages(base64Array);
         }
     };
 
@@ -80,6 +90,7 @@ const AddProduct = () => {
                     type='file'
                     accept='.jpg, .png, .jpeg'
                     onChange={(e) => handleFileUpload(e)}
+                    multiple
                 />
 
                 <label>title:</label>
@@ -121,6 +132,7 @@ const AddProduct = () => {
                     add
                 </button>
                 {error && <div className='error'>{error}</div>}
+            
             </form>
         </div>
     );
