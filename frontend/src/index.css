@@ -23,42 +23,6 @@ header {
     border-radius: 10px;
 }
 
-.home {
-    background-color: rgb(230, 230, 230);
-    margin: 10px;
-    border-radius: 10px;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill);
-}
-
-.home a {
-    margin: 20px;
-    text-decoration: none;
-}
-
-.home hr {
-    width: 100%;
-    margin: 0 20px;
-}
-
-.homecontent {
-    background-color: white;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 3fr));
-}
-
-.productcard {
-    border-radius: 5px;
-    background-color: rgb(232, 230, 230);
-    border: 1px solid grey;
-    box-shadow: 1px 1px 3px;
-    padding: 10px;
-    color: black;
-}
-
-
 
 .login {
 
@@ -350,6 +314,70 @@ header {
     height: 100%;
 }
 
+.home {
+    background-color: rgb(230, 230, 230);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill);
+}
+
+.home a {
+    margin: 20px;
+    text-decoration: none;
+}
+
+.home hr {
+    width: 100%;
+    margin: 0 20px;
+}
+
+.homecontent {
+    background-color: white;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 3fr));
+}
+
+.productcard {
+    border-radius: 5px;
+    background-color: rgb(232, 230, 230);
+    border: 1px solid grey;
+    box-shadow: 1px 1px 3px;
+    color: black;
+    transition: transform 0.2s ease-in-out;
+    z-index: 1;
+}
+.productcard:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.productcard img{
+    width: 300px;
+    height:150px;
+    max-width: 100%;
+    border-radius: 5px;
+ }
+ .imagep{
+    width: 300px;
+    height:150px;
+    max-width: 100%;
+    border-radius: 5px;
+    text-align:center;
+    align-items: center;
+   
+ }
+
+.productcard h1{
+    padding:5px;
+}
+.productcard p {
+    padding:5px;
+    text-align: right;
+}
+ 
 .productdetail{
     background-color:rgb(230, 230, 230) ;
     border-radius: 10px;

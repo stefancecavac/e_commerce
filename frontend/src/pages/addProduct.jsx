@@ -66,12 +66,11 @@ const AddProduct = () => {
         const files = e.target.files;
 
         if(files.length > 5){
-            console.log('max number of images 5')
             setImages([]);
             setError('max number of images is 5')
             return
         }
-
+       
         if (files.length > 0) {
             const base64Array = await Promise.all(
                 Array.from(files).map((file) => convertTo64(file))
@@ -91,6 +90,8 @@ const AddProduct = () => {
                     accept='.jpg, .png, .jpeg'
                     onChange={(e) => handleFileUpload(e)}
                     multiple
+                    required
+                    
                 />
 
                 <label>title:</label>

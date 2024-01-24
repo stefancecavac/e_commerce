@@ -49,7 +49,7 @@ const getUserProduct = async (req, res) => {
 const postProduct = async (req, res) => {
     const { title, description, price , category ,images} = req.body
 
-    if (!title || !description || !price  || !category)  {
+    if (!title || !description || !price  || !category || !images)  {
         return res.status(400).json({ error: 'please fill out all fields' })
     }
 
