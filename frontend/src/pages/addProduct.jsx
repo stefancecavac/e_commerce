@@ -8,6 +8,7 @@ const AddProduct = () => {
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
     const [images, setImages] = useState([]);
+    const [status , setState] = useState('')
 
     const [loading, setLoading] = useState(null);
     const [error, setError] = useState(null);
@@ -22,7 +23,7 @@ const AddProduct = () => {
         try {
             const response = await fetch('http://localhost:4000/api/products', {
                 method: 'POST',
-                body: JSON.stringify({ title, description, price, category, images }),
+                body: JSON.stringify({ title, description, price, category, images , status}),
                 headers: {
                     'Authorization': `Bearer ${user.token}`,
                     'Content-Type': 'application/json',
@@ -37,7 +38,8 @@ const AddProduct = () => {
                 setDescription('');
                 setPrice('');
                 setCategory('');
-                setImages(null); 
+                setImages(null);
+                setState('')
                 setError(null);
                 setLoading(true);
             } else {
@@ -65,12 +67,12 @@ const AddProduct = () => {
     const handleFileUpload = async (e) => {
         const files = e.target.files;
 
-        if(files.length > 5){
+        if (files.length > 5) {
             setImages([]);
             setError('max number of images is 5')
             return
         }
-       
+
         if (files.length > 0) {
             const base64Array = await Promise.all(
                 Array.from(files).map((file) => convertTo64(file))
@@ -91,7 +93,7 @@ const AddProduct = () => {
                     onChange={(e) => handleFileUpload(e)}
                     multiple
                     required
-                    
+
                 />
 
                 <label>title:</label>
@@ -129,11 +131,26 @@ const AddProduct = () => {
                     )}
                 </select>
 
+                <label>state of product:</label>
+                <select
+                    value={status}
+                    onChange={(e) => setState(e.target.value)}
+                >
+                    <option value=''>Select category</option>
+                    {['new','used'].map(
+                        (status) => (
+                            <option key={status} value={status}>
+                                {status}
+                            </option>
+                        )
+                    )}
+                </select>
+
                 <button disabled={loading} type='submit'>
                     add
                 </button>
                 {error && <div className='error'>{error}</div>}
-            
+
             </form>
         </div>
     );

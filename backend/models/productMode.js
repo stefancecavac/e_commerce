@@ -23,12 +23,17 @@ const productSchema = new Schema({
         type:String,
         required:true
     }],
-   
     category: {
         type:String,
         enum: ['electronic', 'furniture', 'automotive', 'other'],
         required: true
+    },
+    status:{
+        type:String,
+        enum: ['new' , 'used'],
+        required: true
     }
+
 }, { timestamps: true })
 
 module.exports = mongoose.model('Product', productSchema)

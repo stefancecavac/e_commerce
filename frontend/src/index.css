@@ -360,6 +360,18 @@ header {
     max-width: 100%;
     border-radius: 5px;
  }
+
+ .tags{
+    display: flex;
+ }
+ .tags p {
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid grey;
+    color:grey;
+    margin:2px;
+    padding:2px;
+ }
  .imagep{
     width: 300px;
     height:150px;
@@ -370,17 +382,31 @@ header {
    
  }
 
-.productcard h1{
-    padding:5px;
-}
+
 .productcard p {
-    padding:5px;
+   
     text-align: right;
 }
  
 .productdetail{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    max-width: 40%;
     background-color:rgb(230, 230, 230) ;
     border-radius: 10px;
-    margin:10px;
     padding:10px;
+}
+.slideshow-container{
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   
+}
+.slideshow-container img{
+    width: 90%;
+}
+.productdetail img{
+    height:400px;
+  
 }

@@ -3,12 +3,14 @@ import { useProductContext } from "../hooks/useProductHook"
 import { useParams } from "react-router-dom"
 import { useUserContext } from "../hooks/useUserContext"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 const ProductDetails = () => {
     const { singleProduct, dispatch } = useProductContext()
     const { productId } = useParams()
     const { user } = useUserContext()
     const navigateTo = useNavigate()
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
         const fetchSingleProduct = async () => {
@@ -48,14 +50,29 @@ const ProductDetails = () => {
         }
     }
 
+    const handleNextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % singleProduct.images.length);
+    };
+
+    const handlePrevImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + singleProduct.images.length) % singleProduct.images.length);
+    };
+
     return (
         <div className="productdetail">
             {singleProduct && (
                 <>
+                   <div className="slideshow-container">
+                        <button onClick={handlePrevImage}>&#10094;</button>
+                        <img src={singleProduct.images[currentImageIndex]} alt={`Product ${singleProduct.title}`} />
+                        
+                        <button onClick={handleNextImage}>&#10095;</button>
+                    </div>
+                    <p>{currentImageIndex + 1}/{singleProduct.images.length}</p>
                     <h1>{singleProduct.title}</h1>
                     <p>{singleProduct.description}</p>
-                    <p>{singleProduct.price}</p>
-                    <p>{singleProduct.createdAt}</p>
+                    <p>{singleProduct.price} KM</p>
+                    <p>{new Date(singleProduct.createdAt).toLocaleDateString()}</p>
                     <p>{singleProduct.userid.email}</p>
 
                     {user && user._id === singleProduct.userid._id && (

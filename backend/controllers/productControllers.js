@@ -47,15 +47,15 @@ const getUserProduct = async (req, res) => {
 }
 
 const postProduct = async (req, res) => {
-    const { title, description, price , category ,images} = req.body
+    const { title, description, price , category ,images , status}  = req.body
 
-    if (!title || !description || !price  || !category || !images)  {
+    if (!title || !description || !price  || !category || !images || !status)  {
         return res.status(400).json({ error: 'please fill out all fields' })
     }
 
     try {
         const userid = req.user._id
-        const product = await Product.create({ title, description, price, userid, category ,images})
+        const product = await Product.create({ title, description, price, userid, category ,images , status})
         res.status(201).json(product)
         console.log(product)
     }
