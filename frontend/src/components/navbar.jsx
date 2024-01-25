@@ -19,10 +19,7 @@ const Navbar = () => {
 
                 <Link to='/'><h1>E-commerce</h1></Link>
 
-                <input className='search' type="text"></input>
-
-
-               
+              
                 {user ? (
                     <UserInfo></UserInfo>
                 ) : (

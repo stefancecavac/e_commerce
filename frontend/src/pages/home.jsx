@@ -1,96 +1,64 @@
-import { useEffect, useState } from "react"
-import { Link } from 'react-router-dom'
+import{ useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { useProductContext } from "../hooks/useProductHook"
-import { useUserContext } from '../hooks/useUserContext'
-
-import ProductCard from "../components/productCard"
-
-
+import { useProductContext } from '../hooks/useProductHook';
+import ProductCard from '../components/productCard';
+import FilterCard from '../components/filterCard';
 
 const Home = () => {
-    const { products, dispatch } = useProductContext()
-    const { user } = useUserContext()
-    const [category, setCategory] = useState('')
-    const [status , setStatus] = useState('')
-    const [loading, setLoading] = useState(true)
+    const { products, dispatch } = useProductContext();
+    const [category, setCategory] = useState('');
+    const [status, setStatus] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-
-                const response = await fetch(`http://localhost:4000/api/products?category=${category}&status=${status}`, {
-
-                })
-                const json = await response.json()
+                const response = await fetch(`http://localhost:4000/api/products?category=${category}&status=${status}`);
+                const json = await response.json();
 
                 if (response.ok) {
-                    dispatch({ type: 'SET_PRODUCTS', payload: json })
+                    dispatch({ type: 'SET_PRODUCTS', payload: json });
                 }
+            } catch (error) {
+                console.log('fetch error', error);
+            } finally {
+                setLoading(false);
             }
-            catch (error) {
-                console.log('fetch error', error)
-            }
-            finally {
-                setLoading(false)
-            }
-        }
+        };
 
-        fetchProducts()
-    }, [dispatch, user, category,status])
+        fetchProducts();
+    }, [dispatch, category, status]);
 
+    const handleFilterChangeCategory = (selectedCategory) => {
+        setCategory(selectedCategory);
+    };
 
-    const handleFilterChangeCategory = (event) => {
-        setCategory(event.target.value)
-    }
-    const handleFilterChangeStatus = (event) => {
-        setStatus(event.target.value)
-    }
-
+    const handleFilterChangeStatus = (selectedStatus) => {
+        setStatus(selectedStatus);
+    };
 
     return (
         <div className="home">
-            <label>Category:</label>
-            <select
-                value={category}
-                onChange={handleFilterChangeCategory}
-            >
-                <option value=''>Select category</option>
-                {['electronic', 'furniture', 'automotive', 'other'].map(
-                    (category) => (
-                        <option key={category} value={category}>
-                            {category}
-                        </option>
-                    )
-                )}
-            </select>
-            <label>status:</label>
-            <select
-                value={status}
-                onChange={handleFilterChangeStatus}
-            >
-                <option value=''>Select category</option>
-                {['new', 'used'].map(
-                    (status) => (
-                        <option key={status} value={status}>
-                            {status}
-                        </option>
-                    )
-                )}
-            </select>
+            <FilterCard
+                category={category}
+                status={status}
+                onCategoryChange={handleFilterChangeCategory}
+                onStatusChange={handleFilterChangeStatus}
+            />
             <div className="homecontent">
                 {loading ? (
-                    <p> loading ...</p>
+                    <p>Loading...</p>
                 ) : (
                     products && products.map((product) => (
-                        <Link key={product._id} to={`/product-details/${product._id}`} ><ProductCard product={product}></ProductCard></Link>
+                        <Link key={product._id} to={`/product-details/${product._id}`}>
+                            <ProductCard product={product} />
+                        </Link>
                     ))
-
                 )}
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
