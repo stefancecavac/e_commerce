@@ -4,6 +4,7 @@ const User = require('../models/userModel')
 
 const getProducts = async (req, res) => {
     try {
+        
         const product = await Product.find({}).sort({ createdAt: -1 })
 
         res.status(200).json(product)
@@ -43,6 +44,30 @@ const getUserProduct = async (req, res) => {
     }
     catch (error) {
         res.status(500).json({ error: message.error })
+    }
+}
+
+const filterByCategory = async(req , res) => {
+    try{
+        
+        const { category , status } = req.query
+
+        const filterObject = {};
+
+        if (category) {
+            filterObject.category = category;
+        }
+
+        if (status) {
+            filterObject.status = status;
+        }
+
+        console.log('Received Category:', category)
+        const product = await Product.find(filterObject).sort({createdAt: -1})
+        res.status(200).json(product)
+    }
+    catch(error){
+        res.status(500).json({error: error.message})
     }
 }
 
@@ -87,4 +112,4 @@ const deleteUserProduct = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' })
     }
 };
-module.exports = { getProducts, postProduct, getSingleProduct, getUserProduct ,deleteUserProduct}
+module.exports = { getProducts, postProduct, getSingleProduct, getUserProduct ,deleteUserProduct ,filterByCategory}

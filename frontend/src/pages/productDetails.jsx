@@ -69,6 +69,7 @@ const ProductDetails = () => {
                         <button onClick={handleNextImage}>&#10095;</button>
                     </div>
                     <p>{currentImageIndex + 1}/{singleProduct.images.length}</p>
+                    
                     <h1>{singleProduct.title}</h1>
                     <p>{singleProduct.description}</p>
                     <p>{singleProduct.price} KM</p>

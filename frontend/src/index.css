@@ -400,8 +400,16 @@ header {
 .slideshow-container{
     display: flex;
    justify-content: center;
-   align-items: center;
-   
+
+  
+}
+.slideshow-container button{
+    border: none;
+
+}
+.slideshow-container button:hover{
+    background-color: rgb(218, 218, 218);
+    cursor:pointer
 }
 .slideshow-container img{
     width: 90%;
