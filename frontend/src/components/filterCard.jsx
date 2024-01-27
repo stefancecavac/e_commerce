@@ -1,6 +1,6 @@
 
 
-const FilterCard = ({ category, status, onCategoryChange, onStatusChange }) => {
+const FilterCard = ({ category, status,search , onCategoryChange, onStatusChange ,onSearchChange }) => {
     return (
         <div className="filter">
             <label>Category:</label>
@@ -32,7 +32,13 @@ const FilterCard = ({ category, status, onCategoryChange, onStatusChange }) => {
                     )
                 )}
             </select>
-            <input type='text' placeholder="eg. sofa..."></input>
+            <label>Search:</label>
+            <input
+                type='text'
+                placeholder="eg. sofa..."
+                value={search}
+                onChange={(e) => onSearchChange(e.target.value)}
+            />
         </div>
     )
 }

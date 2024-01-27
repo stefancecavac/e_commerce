@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lovers+Quarrel&family=Roboto:wght@300;400&display=swap');
+
+
+
 body {
     margin: 0;
     padding: 0;
     font-size: 15px;
+    font-family: 'Caveat', cursive;
+    font-family: 'Lovers Quarrel', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -333,24 +340,27 @@ header {
     margin: 0 20px;
 }
 
-.filter{
+.filter {
     background-color: white;
     border-radius: 10px;
-    padding:10px;
-    margin:10px;
+    padding: 10px;
+    margin: 10px;
 }
-.filter select{
+
+.filter select {
     border: 1px grey;
-    margin:5px;
+    margin: 5px;
     border-radius: 10px;
 }
+
 .filter input {
     width: 30%;
     border-radius: 10px;
-    padding:5px;
+    padding: 5px;
     justify-content: center;
-    margin:auto;
+    margin: auto;
 }
+
 .homecontent {
     background-color: white;
     border-radius: 10px;
@@ -367,72 +377,80 @@ header {
     transition: transform 0.2s ease-in-out;
     z-index: 1;
 }
+
 .productcard:hover {
     transform: scale(1.05);
     z-index: 2;
 }
 
-.productcard img{
+.productcard img {
     width: 300px;
-    height:150px;
+    height: 150px;
     max-width: 100%;
     border-radius: 5px;
- }
+}
 
- .tags{
+.tags {
     display: flex;
- }
- .tags p {
+}
+
+.tags p {
     border-radius: 10px;
     background-color: white;
     border: 1px solid grey;
-    color:grey;
-    margin:2px;
-    padding:2px;
- }
- .imagep{
+    color: grey;
+    margin: 2px;
+    padding: 2px;
+}
+
+.imagep {
     width: 300px;
-    height:150px;
+    height: 150px;
     max-width: 100%;
     border-radius: 5px;
-    text-align:center;
+    text-align: center;
     align-items: center;
-   
- }
+
+}
 
 
 .productcard p {
-   
+
     text-align: right;
 }
- 
-.productdetail{
+
+.productdetail {
     display: flex;
     flex-direction: column;
-    margin:auto;
+    margin: auto;
     max-width: 40%;
-    background-color:rgb(230, 230, 230) ;
+    background-color: rgb(230, 230, 230);
     border-radius: 10px;
-    padding:10px;
+    padding: 10px;
 }
-.slideshow-container{
-    display: flex;
-   justify-content: center;
 
-  
+.slideshow-container {
+    display: flex;
+    justify-content: center;
+
+
 }
-.slideshow-container button{
+
+.slideshow-container button {
     border: none;
 
 }
-.slideshow-container button:hover{
+
+.slideshow-container button:hover {
     background-color: rgb(218, 218, 218);
-    cursor:pointer
+    cursor: pointer
 }
-.slideshow-container img{
+
+.slideshow-container img {
     width: 90%;
 }
-.productdetail img{
-    height:400px;
-  
+
+.productdetail img {
+    height: 400px;
+
 }

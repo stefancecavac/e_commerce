@@ -5,16 +5,18 @@ import { useProductContext } from '../hooks/useProductHook';
 import ProductCard from '../components/productCard';
 import FilterCard from '../components/filterCard';
 
+
 const Home = () => {
     const { products, dispatch } = useProductContext();
     const [category, setCategory] = useState('');
     const [status, setStatus] = useState('');
+    const [search , setSearch] = useState('')
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`http://localhost:4000/api/products?category=${category}&status=${status}`);
+                const response = await fetch(`http://localhost:4000/api/products?category=${category}&status=${status}&search=${search}`);
                 const json = await response.json();
 
                 if (response.ok) {
@@ -28,7 +30,7 @@ const Home = () => {
         };
 
         fetchProducts();
-    }, [dispatch, category, status]);
+    }, [dispatch, category, status , search]);
 
     const handleFilterChangeCategory = (selectedCategory) => {
         setCategory(selectedCategory);
@@ -37,14 +39,20 @@ const Home = () => {
     const handleFilterChangeStatus = (selectedStatus) => {
         setStatus(selectedStatus);
     };
+    const handleSearchChange = (searchTerm) => {
+        setSearch(searchTerm);
+    };
+
 
     return (
         <div className="home">
             <FilterCard
                 category={category}
                 status={status}
+                search={search}
                 onCategoryChange={handleFilterChangeCategory}
                 onStatusChange={handleFilterChangeStatus}
+                onSearchChange={handleSearchChange}
             />
             <div className="homecontent">
                 {loading ? (

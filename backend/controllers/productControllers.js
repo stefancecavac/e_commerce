@@ -47,10 +47,10 @@ const getUserProduct = async (req, res) => {
     }
 }
 
-const filterByCategory = async(req , res) => {
+const filterProducts = async(req , res) => {
     try{
         
-        const { category , status } = req.query
+        const { category , status ,search} = req.query
 
         const filterObject = {};
 
@@ -60,6 +60,9 @@ const filterByCategory = async(req , res) => {
 
         if (status) {
             filterObject.status = status;
+        }
+        if (search) {
+            filterObject.$text = { $search: search };
         }
 
         console.log('Received Category:', category)
@@ -112,4 +115,4 @@ const deleteUserProduct = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' })
     }
 };
-module.exports = { getProducts, postProduct, getSingleProduct, getUserProduct ,deleteUserProduct ,filterByCategory}
+module.exports = { getProducts, postProduct, getSingleProduct, getUserProduct ,deleteUserProduct ,filterProducts}
